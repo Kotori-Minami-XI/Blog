@@ -6,9 +6,12 @@
 <struts>
 
     <package name="struts" extends="struts-default">
-        <!-- Handover to spring，class is Spring ID  -->
+        <!-- Handover to spring -->
         <action name="loginAction_*" class="loginAction" method="{1}">
-            <allowed-methods>Login</allowed-methods>
+            <result name="LOGIN_FAIL">/mgr_login.jsp</result>
+            <result name="LOGIN_SUCCESS" type="redirect">/mgr_index.jsp</result>
+            <result name="LOGOUT_SUCCESS" type="redirect">/mgr_login.jsp</result>
+            <allowed-methods>login, logout</allowed-methods>
         </action>
     </package>
 

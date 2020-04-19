@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE HTML>
 <html dir="ltr" lang="en-US">
 	<head>
@@ -13,14 +14,14 @@
 	<body>
 		<div id="container">
 			
-			<form action="${pageContext.request.contextPath}/loginAction_Login.action" id="login_form" method="post">
+			<form action="${pageContext.request.contextPath}/loginAction_login.action" id="login_form" method="post">
 				<div class="login">博客后台管理系统
-				 <!--  <span style="color:red">用户名密码错</span> -->
+					<span style="color:red"><s:actionerror/></span>
 				</div>
 				<div class="username-text">用户名:</div>
 				<div class="password-text">密码:</div>
 				<div class="username-field">
-					<input type="text" name="username" value="myxq" />
+					<input type="text" name="username" value="Kotori" />
 				</div>
 				<div class="password-field">
 					<input type="password" name="password" value="1234" />

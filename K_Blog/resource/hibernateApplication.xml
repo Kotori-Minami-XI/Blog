@@ -36,10 +36,10 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
-        <!-- Mapping files -->
+        <!-- Mapping domain to hibernate -->
         <property name="mappingResources">
             <list>
-<!--                <value>com/itlike/domain/Account.hbm.xml</value>-->
+                <value>com/Kotori/domain/User.hbm.xml</value>
             </list>
         </property>
     </bean>

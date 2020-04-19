@@ -15,8 +15,18 @@
 
     <!-- Import hibernate Config -->
     <import resource="hibernateApplication.xml"/>
-    
-    <bean id="loginAction" class="com.Kotori.web.LoginAction"></bean>
+
+    <!-- Reminder: scope has to be prototype because each request is unique -->
+    <bean id="loginAction" class="com.Kotori.web.LoginAction" scope="prototype">
+        <property name="loginService" ref="serviceLogin"></property>
+    </bean>
+    <bean id="serviceLogin" class="com.Kotori.service.impl.LoginServiceImpl">
+        <property name="UserDao" ref="DaoLogin"></property>
+    </bean>
+    <!-- Reminder: Essential to inject sessionFactory so that database could be used -->
+    <bean id="DaoLogin" class="com.Kotori.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 
 
 </beans>

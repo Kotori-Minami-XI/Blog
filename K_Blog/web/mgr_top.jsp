@@ -52,8 +52,13 @@
         博客系统
     </div>
     <div class="h_top_right">
-        <span style="margin-right: 50px">码蚁小强</span>
-        <span><a href="#" style="color: lightseagreen">退出</a></span>
+        <span style="margin-right: 50px">${sessionScope.curUser.username}</span>
+        <span>
+            <a href="${pageContext.request.contextPath}/loginAction_logout.action"
+               style="color: lightseagreen"
+               target="_parent">退出
+            </a>
+        </span>
     </div>
 
 </div>
