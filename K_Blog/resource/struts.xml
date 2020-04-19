@@ -6,7 +6,8 @@
 <struts>
 
     <package name="struts" extends="struts-default">
-        <action name="loginAction_*" class="com.Kotori.web.LoginAction" method="{1}">
+        <!-- Handover to spring，class is Spring ID  -->
+        <action name="loginAction_*" class="loginAction" method="{1}">
             <allowed-methods>Login</allowed-methods>
         </action>
     </package>

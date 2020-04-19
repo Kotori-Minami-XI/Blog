@@ -8,7 +8,7 @@
         <welcome-file>mgr_login.jsp</welcome-file>
     </welcome-file-list>
 
-    <!--struts2核心过滤器-->
+    <!--struts2 core filter-->
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -18,17 +18,14 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--Spring的核心监听器-->
+    <!--Spring core listener-->
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
 
-    <!--
-     加载Spring的配置文件的路径的
-     默认加载的/WEB-INF/applicationContext.xml
-     -->
+    <!-- Load Spring config default path:/WEB-INF/applicationContext.xml -->
     <context-param>
         <param-name> contextConfigLocation</param-name>
         <param-value> classpath:applicationContext.xml</param-value>

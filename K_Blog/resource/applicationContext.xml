@@ -13,8 +13,10 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!--导入hibernate相关配置-->
+    <!-- Import hibernate Config -->
     <import resource="hibernateApplication.xml"/>
+    
+    <bean id="loginAction" class="com.Kotori.web.LoginAction"></bean>
 
 
 </beans>
