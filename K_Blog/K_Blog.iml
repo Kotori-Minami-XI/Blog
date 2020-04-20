@@ -31,7 +31,7 @@
     </content>
     <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.1032" level="application_server_libraries" />
     <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" name="tomcat lib" level="project" />
   </component>
 </module>

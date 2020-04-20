@@ -24,7 +24,7 @@
         <div class="am-u-sm-12 am-u-md-6">
             <div class="am-btn-toolbar">
                 <div class="am-btn-group am-btn-group-xs">
-                    <button id="add" class="am-btn am-btn-default">
+                    <button id="addCategory_btn" class="am-btn am-btn-default">
                         <span class="am-icon-plus"></span> 添加分类</button>
                 </div>
             </div>
@@ -44,8 +44,10 @@
         <ul class="list_goods_ul">
             <li><s:property value="#category.cid"></s:property></li>
             <li><s:property value="#category.cname"></s:property></li>
-            <li><a href="#"><img class="img_icon" src="images/edit_icon.png" alt=""></a></li>
-            <li><a href="#"><img class="img_icon" src="images/delete_icon.png" alt=""></a></li>
+            <li><a href="#" class="editCategory_btn" data-cid="<s:property value="#category.cid"></s:property>">
+                <img class="img_icon" src="images/edit_icon.png" alt=""></a>
+            </li>
+            <li><a href="#" class="deleteCategory_btn"><img class="img_icon" src="images/delete_icon.png" alt=""></a></li>
         </ul>
     </s:iterator>
 
@@ -54,8 +56,8 @@
 <%-- Grey background for windows --%>
 <div id="modal_view"></div>
 
-<div id="modal_content">
-    <div id="close"><img src="images/delete_icon.png" alt=""></div>
+<div id="modal_content_addCategoryWindow">
+    <div id="addCategory_close"><img src="images/delete_icon.png" alt=""></div>
     <div class="edit_content">
 
         <div class="item1">
@@ -77,16 +79,39 @@
     </div>
 </div>
 
+<div id="modal_content_editCategoryWindow">
+    <div id="editCategory_close"><img src="images/delete_icon.png" alt=""></div>
+    <div class="edit_content">
+
+        <div class="item1">
+            <div>
+                <span>添加分类：</span>
+                <input type="text" name="parentid" class="am-form-field" id="parentid_edit">&nbsp;&nbsp;
+            </div>
+        </div>
+        <div class="item1">
+            <div>
+                <span>分类名称：</span>
+                <input type="text" name="cname" class="am-form-field" id="cname_edit">&nbsp;&nbsp;
+            </div>
+        </div>
+        <div class="item1">
+            <button class="am-btn am-btn-default" type="button" id="editCategory">添加</button>
+        </div>
+
+    </div>
+</div>
+
 <script>
     $(function () {
-        $('#add').click(function () {
+        $('#addCategory_btn').click(function () {
             $("#modal_view").fadeIn();
-            $("#modal_content").fadeIn();
+            $("#modal_content_addCategoryWindow").fadeIn();
         });
 
-        $("#close").click(function () {
+        $("#addCategory_close").click(function () {
             $("#modal_view").fadeOut();
-            $("#modal_content").fadeOut();
+            $("#modal_content_addCategoryWindow").fadeOut();
         });
 
         $("#addCategory").click(function () {
@@ -97,6 +122,29 @@
                 'location',
                 '${pageContext.request.contextPath}/categoryAction_addCategory.action?parentid=' + parentId + "&cname=" + cname);
         })
+
+        $(".editCategory_btn").click(function () {
+            var cid = $(this).data("cid");
+            // alert(cid);
+
+            // Ajax request to obtain a specific result
+            $.post(
+                "${pageContext.request.contextPath}/categoryAction_updateUI.action",
+                {"cid": cid},
+                function(data){
+                    $("#")
+                },
+                "json")
+
+            $("#modal_view").fadeIn();
+            $("#modal_content_editCategoryWindow").fadeIn();
+        })
+
+        $("#editCategory_close").click(function () {
+            $("#modal_view").fadeOut();
+            $("#modal_content_editCategoryWindow").fadeOut();
+        });
+
     });
 </script>
 </body>

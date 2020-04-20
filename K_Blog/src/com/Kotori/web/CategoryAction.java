@@ -5,6 +5,9 @@ import com.Kotori.service.CategoryService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
+import org.apache.struts2.ServletActionContext;
 
 import java.util.List;
 
@@ -39,5 +42,14 @@ public class CategoryAction extends ActionSupport implements ModelDriven<Categor
         // Store results in value stack
         ActionContext.getContext().getValueStack().set("categoryList", list);
         return "CATEGORY_ALL_OBTAIN_SUCCESS";
+    }
+
+    public String updateUI(){
+        Category targetCategory = categoryService.queryCategoryByCid(category.getCid());
+        JSONArray jsonArray = JSONArray.fromObject(targetCategory, new JsonConfig());
+        ServletActionContext.getResponse().setContentType("text/html:charset=UTF-8");
+//        ServletActionContext.getResponse().getWriter().println();
+
+        return null;
     }
 }

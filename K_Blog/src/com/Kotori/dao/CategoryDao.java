@@ -8,4 +8,6 @@ public interface CategoryDao {
     String addCategory(Category category);
 
     List<Category> getAllCategory();
+
+    Category queryCategoryByCid(Integer cid);
 }
