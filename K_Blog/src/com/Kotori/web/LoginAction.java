@@ -2,7 +2,6 @@ package com.Kotori.web;
 
 import com.Kotori.domain.User;
 import com.Kotori.service.LoginService;
-import com.Kotori.service.impl.LoginServiceImpl;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;

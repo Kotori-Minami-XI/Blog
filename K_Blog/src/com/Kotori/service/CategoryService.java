@@ -10,4 +10,8 @@ public interface CategoryService {
     List<Category> getAllCategory();
 
     Category queryCategoryByCid(Integer cid);
+
+    String updateCategory(Category category);
+
+    String deleteCategory(Category category);
 }

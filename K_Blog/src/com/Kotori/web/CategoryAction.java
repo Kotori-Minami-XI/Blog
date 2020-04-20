@@ -9,6 +9,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 import org.apache.struts2.ServletActionContext;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CategoryAction extends ActionSupport implements ModelDriven<Category> {
@@ -30,7 +31,7 @@ public class CategoryAction extends ActionSupport implements ModelDriven<Categor
      */
     public String addCategory(){
         categoryService.addCategory(this.category);
-        return null;
+        return "CATEGORY_ADD_SUCCESS";
     }
 
     /***
@@ -44,12 +45,23 @@ public class CategoryAction extends ActionSupport implements ModelDriven<Categor
         return "CATEGORY_ALL_OBTAIN_SUCCESS";
     }
 
-    public String updateUI(){
+    public String updateUI() throws IOException {
         Category targetCategory = categoryService.queryCategoryByCid(category.getCid());
-        JSONArray jsonArray = JSONArray.fromObject(targetCategory, new JsonConfig());
-        ServletActionContext.getResponse().setContentType("text/html:charset=UTF-8");
-//        ServletActionContext.getResponse().getWriter().println();
 
+        JSONArray jsonArray = JSONArray.fromObject(targetCategory, new JsonConfig());
+
+        ServletActionContext.getResponse().setContentType("text/html:charset=UTF-8");
+        ServletActionContext.getResponse().getWriter().println(jsonArray.toString());
         return null;
+    }
+
+    public String updateCategory(){
+        categoryService.updateCategory(category);
+        return "CATEGORY_UPDATE_SUCCESS";
+    }
+
+    public String deleteCategory(){
+        categoryService.deleteCategory(category);
+        return "CATEGORY_DELETE_SUCCESS";
     }
 }

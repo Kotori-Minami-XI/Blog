@@ -22,9 +22,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         // Step 3: Execute
         List<User> list = (List<User>)this.getHibernateTemplate().findByCriteria(detachedCriteria);
 
-        if (list.size() > 0){
-            return list.get(0);
-        }
-        return null;
+        return list.size() > 0 ? list.get(0) : null;
     }
 }

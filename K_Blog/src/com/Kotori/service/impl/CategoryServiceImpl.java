@@ -26,4 +26,16 @@ public class CategoryServiceImpl implements CategoryService {
     public Category queryCategoryByCid(Integer cid) {
         return categoryDao.queryCategoryByCid(cid);
     }
+
+    @Override
+    public String updateCategory(Category category) {
+        categoryDao.updateCategory(category);
+        return null;
+    }
+
+    @Override
+    public String deleteCategory(Category category) {
+        categoryDao.deleteCategory(category);
+        return null;
+    }
 }

@@ -47,7 +47,9 @@
             <li><a href="#" class="editCategory_btn" data-cid="<s:property value="#category.cid"></s:property>">
                 <img class="img_icon" src="images/edit_icon.png" alt=""></a>
             </li>
-            <li><a href="#" class="deleteCategory_btn"><img class="img_icon" src="images/delete_icon.png" alt=""></a></li>
+            <li><a href="#" class="deleteCategory_btn" data-cid="<s:property value="#category.cid"></s:property>">
+                <img class="img_icon" src="images/delete_icon.png" alt=""></a>
+            </li>
         </ul>
     </s:iterator>
 
@@ -62,7 +64,7 @@
 
         <div class="item1">
             <div>
-                <span>添加分类：</span>
+                <span>Parent ID：</span>
                 <input type="text" name="parentid" class="am-form-field" id="parentid">&nbsp;&nbsp;
             </div>
         </div>
@@ -85,7 +87,7 @@
 
         <div class="item1">
             <div>
-                <span>添加分类：</span>
+                <span>Parent ID：</span>
                 <input type="text" name="parentid" class="am-form-field" id="parentid_edit">&nbsp;&nbsp;
             </div>
         </div>
@@ -96,8 +98,9 @@
             </div>
         </div>
         <div class="item1">
-            <button class="am-btn am-btn-default" type="button" id="editCategory">添加</button>
+            <button class="am-btn am-btn-default" type="button" id="updateCategory_btn">修改</button>
         </div>
+        <input type="hidden" name="cid" class="am-form-field" id="cid_edit">&nbsp;&nbsp;
 
     </div>
 </div>
@@ -121,28 +124,55 @@
             $(window).attr(
                 'location',
                 '${pageContext.request.contextPath}/categoryAction_addCategory.action?parentid=' + parentId + "&cname=" + cname);
-        })
+        });
 
         $(".editCategory_btn").click(function () {
             var cid = $(this).data("cid");
             // alert(cid);
 
-            // Ajax request to obtain a specific result
+            // Async Ajax request to obtain a specific result
             $.post(
                 "${pageContext.request.contextPath}/categoryAction_updateUI.action",
                 {"cid": cid},
                 function(data){
-                    $("#")
+                    // Display json result in the text boxes
+                    $("#parentid_edit").val(data[0].parentid);
+                    $("#cname_edit").val(data[0].cname);
+                    $("#cid_edit").val(data[0].cid);
                 },
-                "json")
+                "json");
 
             $("#modal_view").fadeIn();
             $("#modal_content_editCategoryWindow").fadeIn();
-        })
+        });
 
-        $("#editCategory_close").click(function () {
+        $("#editCategory_close").click(function() {
             $("#modal_view").fadeOut();
             $("#modal_content_editCategoryWindow").fadeOut();
+        });
+
+        $("#updateCategory_btn").click(function() {
+            var parentId = $("#parentid_edit").val();
+            var cname = $("#cname_edit").val();
+            var cid = $("#cid_edit").val();
+            $(window).attr(
+                'location',
+                '${pageContext.request.contextPath}/categoryAction_updateCategory.action?'
+                + "parentid="
+                + parentId
+                + "&cname="
+                + cname
+                + "&cid="
+                + cid);
+        });
+
+        $(".deleteCategory_btn").click(function () {
+            var cid = $(this).data("cid");
+            $(window).attr(
+                'location',
+                '${pageContext.request.contextPath}/categoryAction_deleteCategory.action?'
+                + "&cid="
+                + cid);
         });
 
     });
