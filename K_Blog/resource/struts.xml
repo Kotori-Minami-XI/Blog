@@ -15,7 +15,8 @@
         </action>
 
         <action name="categoryAction_*" class="categoryAction" method="{1}">
-            <allowed-methods>addCategory</allowed-methods>
+            <result name="CATEGORY_ALL_OBTAIN_SUCCESS">/mgr_category.jsp</result>
+            <allowed-methods>addCategory, listCategory</allowed-methods>
         </action>
     </package>
 

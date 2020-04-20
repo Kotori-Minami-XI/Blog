@@ -2,6 +2,10 @@ package com.Kotori.service;
 
 import com.Kotori.domain.Category;
 
+import java.util.List;
+
 public interface CategoryService {
     String addCategory(Category category);
+
+    List<Category> getAllCategory();
 }

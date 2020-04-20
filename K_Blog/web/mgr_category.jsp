@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,19 +40,19 @@
         <li>删除分类</li>
     </ul>
 
-    <ul class="list_goods_ul">
-        <li>01</li>
-        <li>分类名称</li>
-        <li><a href="#"><img class="img_icon" src="images/edit_icon.png" alt=""></a></li>
-        <li><a href="#"><img class="img_icon" src="images/delete_icon.png" alt=""></a></li>
-    </ul>
+    <s:iterator value="categoryList" var="category" >
+        <ul class="list_goods_ul">
+            <li><s:property value="#category.cid"></s:property></li>
+            <li><s:property value="#category.cname"></s:property></li>
+            <li><a href="#"><img class="img_icon" src="images/edit_icon.png" alt=""></a></li>
+            <li><a href="#"><img class="img_icon" src="images/delete_icon.png" alt=""></a></li>
+        </ul>
+    </s:iterator>
 
 </div>
 
-<div id="modal_view">
-
-
-</div>
+<%-- Grey background for windows --%>
+<div id="modal_view"></div>
 
 <div id="modal_content">
     <div id="close"><img src="images/delete_icon.png" alt=""></div>
