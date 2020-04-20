@@ -17,6 +17,8 @@
     <import resource="hibernateApplication.xml"/>
 
     <!-- Reminder: scope has to be prototype because each request is unique -->
+
+    <!-- Spring config: login Action -->
     <bean id="loginAction" class="com.Kotori.web.LoginAction" scope="prototype">
         <property name="loginService" ref="serviceLogin"></property>
     </bean>
@@ -25,6 +27,19 @@
     </bean>
     <!-- Reminder: Essential to inject sessionFactory so that database could be used -->
     <bean id="DaoLogin" class="com.Kotori.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- Spring config: Category Action -->
+    <bean id="categoryAction" class="com.Kotori.web.CategoryAction" scope="prototype">
+        <property name="categoryService" ref="serviceCategory"></property>
+    </bean>
+
+    <bean id="serviceCategory" class="com.Kotori.service.impl.CategoryServiceImpl">
+        <property name="categoryDao" ref="DaoCategory"></property>
+    </bean>
+
+    <bean id="DaoCategory" class="com.Kotori.dao.impl.CategoryDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

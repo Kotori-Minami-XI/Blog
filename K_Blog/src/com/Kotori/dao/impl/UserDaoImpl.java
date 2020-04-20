@@ -6,14 +6,13 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     @Override
     public User getUser(String username, String password) {
-        System.out.println("DAO-getUser");
-        System.out.println(username+"---"+password);
-
         // QBC query
         // Step 1: Establish criteria
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);

@@ -59,16 +59,17 @@
         <div class="item1">
             <div>
                 <span>添加分类：</span>
+                <input type="text" name="parentid" class="am-form-field" id="parentid">&nbsp;&nbsp;
             </div>
         </div>
         <div class="item1">
             <div>
                 <span>分类名称：</span>
-                <input type="text" class="am-form-field" >&nbsp;&nbsp;
+                <input type="text" name="cname" class="am-form-field" id="cname">&nbsp;&nbsp;
             </div>
         </div>
         <div class="item1">
-            <button class="am-btn am-btn-default" type="button" >添加</button>
+            <button class="am-btn am-btn-default" type="button" id="addCategory">添加</button>
         </div>
         
     </div>
@@ -85,6 +86,15 @@
             $("#modal_view").fadeOut();
             $("#modal_content").fadeOut();
         });
+
+        $("#addCategory").click(function () {
+            var parentId = $("#parentid").val();
+            var cname = $("#cname").val();
+            //alert(parentId+"---"+cname);
+            $(window).attr(
+                'location',
+                '${pageContext.request.contextPath}/categoryAction_addCategory.action?parentid=' + parentId + "&cname=" + cname);
+        })
     });
 </script>
 </body>

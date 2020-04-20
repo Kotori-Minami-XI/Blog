@@ -13,6 +13,10 @@
             <result name="LOGOUT_SUCCESS" type="redirect">/mgr_login.jsp</result>
             <allowed-methods>login, logout</allowed-methods>
         </action>
+
+        <action name="categoryAction_*" class="categoryAction" method="{1}">
+            <allowed-methods>addCategory</allowed-methods>
+        </action>
     </package>
 
 </struts>
