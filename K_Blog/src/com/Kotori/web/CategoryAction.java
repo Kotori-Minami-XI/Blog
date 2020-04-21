@@ -65,5 +65,4 @@ public class CategoryAction extends ActionSupport implements ModelDriven<Categor
         categoryService.deleteCategory(category);
         return "CATEGORY_DELETE_SUCCESS";
     }
-
 }

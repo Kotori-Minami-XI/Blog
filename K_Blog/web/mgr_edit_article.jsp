@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%
-    String ctx = request.getContextPath();
-    pageContext.setAttribute("ctx", ctx);
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="${ctx }/css/style.css" type="text/css" />
-    <link rel="stylesheet" href="${ctx }/css/amazeui.min.css" />
-    <script src="${ctx }/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 </head>
 
 <body>

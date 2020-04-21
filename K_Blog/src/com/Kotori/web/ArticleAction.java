@@ -67,8 +67,9 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
     }
 
     public String getCategory() throws IOException {
-        List<Category> list = articleService.getCategoryByParentId(parentId);
+        List<Category> list = articleService.getCategoryByParentId(this.parentId);
 
+        System.out.println(list);
         // Convert to json so that the front page retrieves items from json
         JSONArray jsonArray = JSONArray.fromObject(list, new JsonConfig());
         ServletActionContext.getResponse().setContentType("text/html:charset=UTF-8");

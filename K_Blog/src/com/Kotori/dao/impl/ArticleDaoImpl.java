@@ -45,7 +45,7 @@ public class ArticleDaoImpl extends HibernateDaoSupport implements ArticleDao {
     @Override
     public List<Category> getCategoryByParentId(Integer parentId) {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Category.class);
-        detachedCriteria.add(Restrictions.eq("parentid", parentId));
+        detachedCriteria.add(Restrictions.eq("parentid", parentId.toString()));
         List<Category> list = (List<Category>) this.getHibernateTemplate().findByCriteria(detachedCriteria);
         return list.size() > 0 ? list : null;
     }

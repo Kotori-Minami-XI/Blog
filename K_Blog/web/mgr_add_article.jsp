@@ -32,10 +32,7 @@
 
             <div class="item1">
                 <span>所属分类：</span>
-                    <select id="category_select" name="bclass.cid" style="width: 150px">&nbsp;&nbsp;
-                        　<option value="aaa">aaa</option>
-                    </select>
-
+                <select id="category_select" name="bclass.cid" style="width: 150px">&nbsp;&nbsp;</select>
                 <select id="skill_select" name="skill.sid" style="width: 150px">&nbsp;&nbsp;
                     <option value="aaa">aa</option>
                 </select>
@@ -57,13 +54,18 @@
     </form>
 
 </div>
-
+　<option value="aaa">aaa</option>
 <script>
     $(function () {
         $.post(
             "${pageContext.request.contextPath}/articleAction_getCategory.action",
-            {"parentid":0},
-            function (data) {},
+            {"parentId":0},
+            function (data) {
+                $(data).each(function (i, obj) {
+                    console.log(obj.cname);
+                    $("#category_select").append("<option value="+ obj.cid +">" + obj.cname + "</option>");
+                })
+            },
             "json")
     });
 </script>
