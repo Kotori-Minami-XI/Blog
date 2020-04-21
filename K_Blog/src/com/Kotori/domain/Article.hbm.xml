@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.Kotori.domain.Article" table="article" >
+        <!--Set main key and its names in database-->
+        <id name="article_id" column="article_id" >
+            <generator class="native"/>
+        </id>
+        <!-- Mapping -->
+        <property name="article_title" column="article_title" />
+        <property name="article_content" column="article_content"/>
+        <property name="article_date" column="article_date"/>
+        <property name="article_pic" column="article_pic"/>
+        <property name="article_desc" column="article_desc"/>
+        <!-- Multiple articles may corresponds to one category -->
+        <many-to-one name="category" class="com.Kotori.domain.Category" column="article_cid"></many-to-one>
+    </class>
+</hibernate-mapping>
+

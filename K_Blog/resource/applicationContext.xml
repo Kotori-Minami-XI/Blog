@@ -34,14 +34,22 @@
     <bean id="categoryAction" class="com.Kotori.web.CategoryAction" scope="prototype">
         <property name="categoryService" ref="serviceCategory"></property>
     </bean>
-
     <bean id="serviceCategory" class="com.Kotori.service.impl.CategoryServiceImpl">
         <property name="categoryDao" ref="DaoCategory"></property>
     </bean>
-
     <bean id="DaoCategory" class="com.Kotori.dao.impl.CategoryDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <!-- Spring config: Article Action -->
+    <bean id="articleAction" class="com.Kotori.web.ArticleAction" scope="prototype">
+        <property name="articleService" ref="serviceArticle"></property>
+    </bean>
+    <bean id="serviceArticle" class="com.Kotori.service.impl.ArticleServiceImpl">
+        <property name="articleDao" ref="DaoArticle"></property>
+    </bean>
+    <bean id="DaoArticle" class="com.Kotori.dao.impl.ArticleDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 
 </beans>

@@ -8,7 +8,17 @@
         <welcome-file>mgr_login.jsp</welcome-file>
     </welcome-file-list>
 
-    <!--struts2 core filter-->
+    <!-- OpenSessionInViewFilter filter: Enable transaction in web layer -->
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+
+    <!-- struts2 core filter -->
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -18,7 +28,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--Spring core listener-->
+    <!-- Spring core listener -->
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener

@@ -41,6 +41,7 @@
             <list>
                 <value>com/Kotori/domain/User.hbm.xml</value>
                 <value>com/Kotori/domain/Category.hbm.xml</value>
+                <value>com/Kotori/domain/Article.hbm.xml</value>
             </list>
         </property>
     </bean>

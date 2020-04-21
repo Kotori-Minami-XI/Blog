@@ -8,6 +8,11 @@ import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao;
+
+    public void setCategoryDao(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+    }
+
     @Override
     public String addCategory(Category category) {
         return categoryDao.addCategory(category);
@@ -16,10 +21,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getAllCategory() {
         return categoryDao.getAllCategory();
-    }
-
-    public void setCategoryDao(CategoryDao categoryDao) {
-        this.categoryDao = categoryDao;
     }
 
     @Override

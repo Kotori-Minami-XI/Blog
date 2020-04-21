@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-    String ctx = request.getContextPath();
-    pageContext.setAttribute("ctx", ctx);
-%>
+<%@taglib uri="/struts-tags" prefix="s"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="${ctx }/css/style.css"
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"
           type="text/css" />
-    <link rel="stylesheet" href="${ctx }/css/amazeui.min.css" />
-    <link rel="stylesheet" href="${ctx }/css/pageStyle.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pageStyle.css">
 
 </head>
 <body style="background:#f3f3f3;">
@@ -51,29 +49,27 @@
         <li>序号</li>
         <li>标题</li>
         <li>学科</li>
-        <li>技能</li>
         <li>编辑</li>
         <li>删除</li>
     </ul>
 
-    <s:iterator value="list">
+    <s:iterator value="allArticle" var="article">
         <ul class="list_goods_ul">
-            <li>aaa</li>
-            <li>bbb</li>
-            <li>ccc</li>
-            <li>ddd</li>
+            <li><s:property value="#article.article_id"></s:property></li>
+            <li><s:property value="#article.article_title"></s:property></li>
+            <li><s:property value="#article.category.cname"></s:property></li>
             <li>
                 <a href="#">
-                <img class="img_icon" src="${ctx }/images/edit_icon.png" alt=""></a>
+                <img class="img_icon" src="${pageContext.request.contextPath}/images/edit_icon.png" alt=""></a>
             </li>
             <li>
                 <a href="#">
-                    <img class="img_icon" src="${ctx }/images/delete_icon.png" alt="">
+                    <img class="img_icon" src="${pageContext.request.contextPath}/images/delete_icon.png" alt="">
                 </a>
             </li>
         </ul>
     </s:iterator>
-    <!--分页-->
+    <!-- Sub pages -->
     <div id="page" class="page_div"></div>
 </div>
 
@@ -81,20 +77,21 @@
 <script type="text/javascript" src="js/paging.js"></script>
 <script>
     
-    //分页
+    // Sub pages implementation
     $("#page").paging({
         pageNo:1,
         totalPage: 5,
         totalSize: 3,
         callback: function(num) {
-          /*  $(window).attr('location','/article_list.action?currPage='+num);*/
             alert(num);
+            $(window).attr(
+                'location','${pageContext.request.contextPath}/articleAction_pageList.action?currentPage=' + num);
         }
     });
 
     $("#add").click(function () {
         alert("aaa");
-        $(window).attr('location','${ctx }/mgr_add_article.jsp');
+        $(window).attr('location','${pageContext.request.contextPath}/mgr_add_article.jsp');
     });
 </script>
 

@@ -4,9 +4,8 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-
+    <!-- IOC: Handover controller to spring -->
     <package name="struts" extends="struts-default">
-        <!-- Handover to spring -->
         <action name="loginAction_*" class="loginAction" method="{1}">
             <result name="LOGIN_FAIL">/mgr_login.jsp</result>
             <result name="LOGIN_SUCCESS" type="redirect">/mgr_index.jsp</result>
@@ -21,6 +20,13 @@
             <result name="CATEGORY_DELETE_SUCCESS" type="redirect">categoryAction_listCategory.action</result>
             <allowed-methods>addCategory, listCategory, updateUI, updateCategory, deleteCategory</allowed-methods>
         </action>
+
+        <action name="articleAction_*" class="articleAction" method="{1}">
+            <result name="ARTICLE_ALL_OBTAIN_SUCCESS">/mgr_main.jsp</result>
+            <allowed-methods>listArticle, pageList</allowed-methods>
+        </action>
+
+
     </package>
 
 </struts>
