@@ -35,7 +35,8 @@
         </div>
         <div class="am-u-sm-12 am-u-md-3">
             <div class="am-input-group am-input-group-sm">
-                <input type="text" class="am-form-field" id="input_search">
+                <input type="text" class="am-form-field" id="input_search" placeholder="请输入文章标题关键字"
+                       value="<s:property value="#parameters.keyword"></s:property>">
                 <span class="am-input-group-btn">
                     <button class="am-btn am-btn-default" type="button" id="input_search_btn">搜索</button>
                 </span>
@@ -63,7 +64,7 @@
                 <img class="img_icon" src="${pageContext.request.contextPath}/images/edit_icon.png" alt=""></a>
             </li>
             <li>
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/articleAction_deleteArticle.action?article_id=<s:property value="#article.article_id"></s:property>">
                     <img class="img_icon" src="${pageContext.request.contextPath}/images/delete_icon.png" alt="">
                 </a>
             </li>
@@ -90,9 +91,14 @@
     });
 
     $("#add").click(function () {
-        alert("aaa");
         $(window).attr('location','${pageContext.request.contextPath}/mgr_add_article.jsp');
     });
+
+    $("#input_search_btn").click(function () {
+        var keyword = $("#input_search").val();
+        $(window).attr('location',"${pageContext.request.contextPath}/articleAction_pageList.action?keyword=" + keyword);
+
+    })
 </script>
 
 </body>

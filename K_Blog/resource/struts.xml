@@ -24,7 +24,8 @@
         <action name="articleAction_*" class="articleAction" method="{1}">
             <result name="ARTICLE_ALL_OBTAIN_SUCCESS">/mgr_main.jsp</result>
             <result name="ARTICLE_SUBPAGE_OBTAIN_SUCCESS">/mgr_main.jsp</result>
-            <allowed-methods>listArticle, pageList</allowed-methods>
+            <result name="ARTICLE_DELETE_SUCCESS" type="redirect">articleAction_pageList.action</result>
+            <allowed-methods>listArticle, pageList, deleteArticle</allowed-methods>
         </action>
 
 

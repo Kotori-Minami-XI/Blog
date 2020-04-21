@@ -7,6 +7,7 @@ import com.Kotori.domain.PageBean;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import javax.transaction.Transactional;
@@ -33,5 +34,19 @@ public class ArticleDaoImpl extends HibernateDaoSupport implements ArticleDao {
         List<Article> list =
                 (List<Article>) this.getHibernateTemplate().findByCriteria(detachedCriteria, currentPage, pageSize);
         return list;
+    }
+
+    @Override
+    public String deleteArticle(Article article) {
+        this.getHibernateTemplate().delete(article);
+        return null;
+    }
+
+    @Override
+    public List<Category> getCategoryByParentId(Integer parentId) {
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Category.class);
+        detachedCriteria.add(Restrictions.eq("parentid", parentId));
+        List<Category> list = (List<Category>) this.getHibernateTemplate().findByCriteria(detachedCriteria);
+        return list.size() > 0 ? list : null;
     }
 }

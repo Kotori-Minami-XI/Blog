@@ -2,6 +2,7 @@ package com.Kotori.service.impl;
 
 import com.Kotori.dao.ArticleDao;
 import com.Kotori.domain.Article;
+import com.Kotori.domain.Category;
 import com.Kotori.domain.PageBean;
 import com.Kotori.service.ArticleService;
 import org.hibernate.criterion.DetachedCriteria;
@@ -37,5 +38,16 @@ public class ArticleServiceImpl implements ArticleService {
         pageBean.setList(list);
 
         return pageBean;
+    }
+
+    @Override
+    public String deleteArticle(Article article) {
+        articleDao.deleteArticle(article);
+        return null;
+    }
+
+    @Override
+    public List<Category> getCategoryByParentId(Integer parentId) {
+        return articleDao.getCategoryByParentId(parentId);
     }
 }
