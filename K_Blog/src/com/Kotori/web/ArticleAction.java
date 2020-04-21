@@ -35,11 +35,9 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
     }
 
     public String pageList(){
-        System.out.println(currentPage);
-
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Article.class);
         PageBean pageBean = articleService.getPageData(detachedCriteria, this.currentPage, 5);
-        System.out.println(pageBean);
-        return null;
+        ActionContext.getContext().getValueStack().push(pageBean);
+        return "ARTICLE_SUBPAGE_OBTAIN_SUCCESS";
     }
 }

@@ -80,7 +80,7 @@
 
 <ul>
     <li><a href="${pageContext.request.contextPath}/categoryAction_listCategory.action" target="mainFrame"><i></i>分类管理</a></li>
-    <li><a href="${pageContext.request.contextPath}/mgr_main.jsp" target="mainFrame"><i></i>文章管理</a></li>
+    <li><a href="${pageContext.request.contextPath}/articleAction_pageList.action" target="mainFrame"><i></i>文章管理</a></li>
     <li></i><a href="${pageContext.request.contextPath}/mgr_account.jsp" target="mainFrame"><i></i>用户管理</a></li>
 </ul>
 

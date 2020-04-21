@@ -11,7 +11,7 @@
     <frame src="mgr_top.jsp" name="topFrame" scrolling="NO" noresize>
     <frameset cols="250,*" frameborder="0" border="0"  framespacing="10">
         <frame src="mgr_left.jsp" name="leftFrame"  scrolling="NO">
-        <frame src="${pageContext.request.contextPath}/articleAction_listArticle.action" name="mainFrame" >
+        <frame src="${pageContext.request.contextPath}/articleAction_pageList.action" name="mainFrame" >
     </frameset>
 </frameset>
 
