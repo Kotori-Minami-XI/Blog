@@ -31,8 +31,9 @@
             <result name="ARTICLE_SUBPAGE_OBTAIN_SUCCESS">/mgr_main.jsp</result>
             <result name="ARTICLE_DELETE_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <result name="ARTICLE_ADD_SUCCESS" type="redirect">articleAction_pageList.action</result>
+            <result name="ARTICLE_OBTAIN_SUCCESS">/mgr_edit_article.jsp</result>
             <allowed-methods>
-                listArticle, pageList, deleteArticle, getCategory, addArticle
+                listArticle, pageList, deleteArticle, getCategory, addArticle, editArticle
             </allowed-methods>
         </action>
 

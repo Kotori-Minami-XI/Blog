@@ -31,9 +31,6 @@
                 </div>
             </div>
 
-            <input type="text" name="article_desc" id="article_desc" style="display: none;">
-
-
             <div class="item1">
                 <span>所属分类：</span>
                 <select id="category_select" name="category.parentid" style="width: 150px">&nbsp;&nbsp;</select>
@@ -47,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="item1 update_pic" style="width: 300px; height: 300px">
+            <div class="item1 update_pic" style="width: 200px; height: 200px; margin-bottom: 10px">
                 <span>摘要图片：</span>
                 <img src="" id="imageview" class="item1_img" style="display: none;" >
                 <label for="fileupload" id="label_file">上传文件</label>

@@ -18,7 +18,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> getAllArticle() {
-        return articleDao.getAllArticle();
+        return this.articleDao.getAllArticle();
     }
 
     @Override
@@ -28,13 +28,13 @@ public class ArticleServiceImpl implements ArticleService {
         pageBean.setCurrentPage(currentPage);
         pageBean.setPageSize(pageSize);
         // Obtain the total number of records in database
-        Integer totalCount = articleDao.getTotalArticleCount(detachedCriteria);
+        Integer totalCount = this.articleDao.getTotalArticleCount(detachedCriteria);
         pageBean.setTotalCount(totalCount);
         // Compute the total number of pages based on totalCount
         pageBean.setTotalPage(pageBean.getTotalPage());
 
         // Query results form database
-        List<Article> list = articleDao.getPageData(detachedCriteria, pageBean.getIndex(), pageBean.getPageSize());
+        List<Article> list = this.articleDao.getPageData(detachedCriteria, pageBean.getIndex(), pageBean.getPageSize());
         pageBean.setList(list);
 
         return pageBean;
@@ -42,18 +42,23 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public String deleteArticle(Article article) {
-        articleDao.deleteArticle(article);
+        this.articleDao.deleteArticle(article);
         return null;
     }
 
     @Override
     public List<Category> getCategoryByParentId(Integer parentId) {
-        return articleDao.getCategoryByParentId(parentId);
+        return this.articleDao.getCategoryByParentId(parentId);
     }
 
     @Override
     public String addArticle(Article article) {
-        articleDao.addArticle(article);
+        this.articleDao.addArticle(article);
         return null;
+    }
+
+    @Override
+    public List<Article> getArticle(DetachedCriteria detachedCriteria) {
+        return this.articleDao.getArticle(detachedCriteria);
     }
 }

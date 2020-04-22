@@ -111,6 +111,15 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
         return "ARTICLE_ADD_SUCCESS";
     }
 
+    public String editArticle() {
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Article.class);
+        detachedCriteria.add(Restrictions.eq("article_id", this.article.getArticle_id()));
+        List<Article> list = articleService.getArticle(detachedCriteria);
+
+        ActionContext.getContext().getValueStack().push(list.get(0));
+        return "ARTICLE_OBTAIN_SUCCESS";
+    }
+
     private String handleUploadedFile() throws IOException {
         if (null != this.upload){
             // Step 1 : Randomly generate file names

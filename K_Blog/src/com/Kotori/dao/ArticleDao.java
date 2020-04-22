@@ -19,4 +19,6 @@ public interface ArticleDao {
     List<Category> getCategoryByParentId(Integer parentId);
 
     String addArticle(Article article);
+
+    List<Article> getArticle(DetachedCriteria detachedCriteria);
 }
