@@ -4,13 +4,16 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
+
     <!-- IOC: Handover controller to spring -->
     <package name="struts" extends="struts-default">
         <action name="loginAction_*" class="loginAction" method="{1}">
             <result name="LOGIN_FAIL">/mgr_login.jsp</result>
             <result name="LOGIN_SUCCESS" type="redirect">/mgr_index.jsp</result>
             <result name="LOGOUT_SUCCESS" type="redirect">/mgr_login.jsp</result>
-            <allowed-methods>login, logout</allowed-methods>
+            <allowed-methods>
+                login, logout
+            </allowed-methods>
         </action>
 
         <action name="categoryAction_*" class="categoryAction" method="{1}">
@@ -18,14 +21,19 @@
             <result name="CATEGORY_ALL_OBTAIN_SUCCESS">/mgr_category.jsp</result>
             <result name="CATEGORY_UPDATE_SUCCESS" type="redirect">categoryAction_listCategory.action</result>
             <result name="CATEGORY_DELETE_SUCCESS" type="redirect">categoryAction_listCategory.action</result>
-            <allowed-methods>addCategory, listCategory, updateUI, updateCategory, deleteCategory</allowed-methods>
+            <allowed-methods>
+                addCategory, listCategory, updateUI, updateCategory, deleteCategory
+            </allowed-methods>
         </action>
 
         <action name="articleAction_*" class="articleAction" method="{1}">
             <result name="ARTICLE_ALL_OBTAIN_SUCCESS">/mgr_main.jsp</result>
             <result name="ARTICLE_SUBPAGE_OBTAIN_SUCCESS">/mgr_main.jsp</result>
             <result name="ARTICLE_DELETE_SUCCESS" type="redirect">articleAction_pageList.action</result>
-            <allowed-methods>listArticle, pageList, deleteArticle, getCategory</allowed-methods>
+            <result name="ARTICLE_ADD_SUCCESS" type="redirect">articleAction_pageList.action</result>
+            <allowed-methods>
+                listArticle, pageList, deleteArticle, getCategory, addArticle
+            </allowed-methods>
         </action>
 
     </package>

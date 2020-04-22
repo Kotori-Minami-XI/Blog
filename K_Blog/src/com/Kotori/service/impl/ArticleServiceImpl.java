@@ -50,4 +50,10 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Category> getCategoryByParentId(Integer parentId) {
         return articleDao.getCategoryByParentId(parentId);
     }
+
+    @Override
+    public String addArticle(Article article) {
+        articleDao.addArticle(article);
+        return null;
+    }
 }

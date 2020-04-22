@@ -21,7 +21,11 @@
     <!-- struts2 core filter -->
     <filter>
         <filter-name>struts2</filter-name>
-        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <!-- Default struts filter -->
+        <!-- <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class> -->
+
+        <!-- Self-defined filter: Direct access to umeditor request-->
+        <filter-class>com.Kotori.web.filter.umEditorFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>struts2</filter-name>

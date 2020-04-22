@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <%-- Third-party editor: umedit--%>
+    <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/umedit/ueditor.config.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/umedit/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="${pageContext.request.contextPath}/js/umedit/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 
@@ -18,7 +22,7 @@
         </strong><small></small></div>
     </div>
     <hr>
-    <form id="blog_form" action="#" method=post >
+    <form id="blog_form" action="${pageContext.request.contextPath}/articleAction_addArticle.action" method="post" enctype="multipart/form-data">
         <div class="edit_content">
             <div class="item1">
                 <div>
@@ -32,11 +36,18 @@
 
             <div class="item1">
                 <span>所属分类：</span>
-                <select id="category_select" name="bclass.cid" style="width: 150px">&nbsp;&nbsp;</select>
-                <select id="skill_select" name="skill.sid" style="width: 150px">&nbsp;&nbsp;</select>
+                <select id="category_select" name="category.parentid" style="width: 150px">&nbsp;&nbsp;</select>
+                <select id="skill_select" name="category.cid" style="width: 150px">&nbsp;&nbsp;</select>
             </div>
 
-            <div class="item1 update_pic" >
+            <div class="item1">
+                <div>
+                    <span>文章摘要：</span>
+                    <input type="text" class="am-form-field" name="article_desc" style="width: 300px">&nbsp;&nbsp;
+                </div>
+            </div>
+
+            <div class="item1 update_pic" style="width: 300px; height: 300px">
                 <span>摘要图片：</span>
                 <img src="" id="imageview" class="item1_img" style="display: none;" >
                 <label for="fileupload" id="label_file">上传文件</label>
@@ -54,6 +65,9 @@
 
 <script>
     $(function () {
+        // Initialize umeditor
+        var ue = UE.getEditor('editor');
+
         // Obtain root categories and load them into select box
         $.post(
             "${pageContext.request.contextPath}/articleAction_getCategory.action",
@@ -94,10 +108,14 @@
             console.log($('#imageview').attr('style'));
             if($('#imageview').attr('style') === 'display: none;'){
                 $('#imageview').attr('style','inline');
-                $('#imageview').width("300px");
+                $('#imageview').width("200px");
                 $('#imageview').height("200px");
                 $('.update_pic').attr('style', 'margin-bottom: 80px;');
             }
+        });
+
+        $("#send").click(function () {
+            $("#blog_form").submit();
         });
 
     });

@@ -49,4 +49,10 @@ public class ArticleDaoImpl extends HibernateDaoSupport implements ArticleDao {
         List<Category> list = (List<Category>) this.getHibernateTemplate().findByCriteria(detachedCriteria);
         return list.size() > 0 ? list : null;
     }
+
+    @Override
+    public String addArticle(Article article) {
+        this.getHibernateTemplate().save(article);
+        return null;
+    }
 }

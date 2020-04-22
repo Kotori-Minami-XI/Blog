@@ -17,4 +17,6 @@ public interface ArticleDao {
     String deleteArticle(Article article);
 
     List<Category> getCategoryByParentId(Integer parentId);
+
+    String addArticle(Article article);
 }
