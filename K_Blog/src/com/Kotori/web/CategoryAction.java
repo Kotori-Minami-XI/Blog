@@ -50,7 +50,6 @@ public class CategoryAction extends ActionSupport implements ModelDriven<Categor
         Category targetCategory = categoryService.queryCategoryByCid(category.getCid());
 
         JSONArray jsonArray = JSONArray.fromObject(targetCategory, new JsonConfig());
-
         ServletActionContext.getResponse().setContentType("text/html:charset=UTF-8");
         ServletActionContext.getResponse().getWriter().println(jsonArray.toString());
         return null;

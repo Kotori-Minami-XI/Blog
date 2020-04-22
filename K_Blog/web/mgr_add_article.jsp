@@ -33,10 +33,7 @@
             <div class="item1">
                 <span>所属分类：</span>
                 <select id="category_select" name="bclass.cid" style="width: 150px">&nbsp;&nbsp;</select>
-                <select id="skill_select" name="skill.sid" style="width: 150px">&nbsp;&nbsp;
-                    <option value="aaa">aa</option>
-                </select>
-
+                <select id="skill_select" name="skill.sid" style="width: 150px">&nbsp;&nbsp;</select>
             </div>
 
             <div class="item1 update_pic" >
@@ -54,19 +51,55 @@
     </form>
 
 </div>
-　<option value="aaa">aaa</option>
+
 <script>
     $(function () {
+        // Obtain root categories and load them into select box
         $.post(
             "${pageContext.request.contextPath}/articleAction_getCategory.action",
             {"parentId":0},
             function (data) {
                 $(data).each(function (i, obj) {
-                    console.log(obj.cname);
+                    // console.log(obj.cname);
                     $("#category_select").append("<option value="+ obj.cid +">" + obj.cname + "</option>");
-                })
+                });
+                // Trigger change event to load sub classes
+                $("#category_select").trigger("change");
             },
-            "json")
+            "json");
+
+        // Register change event for select box
+        $("#category_select").change(function () {
+            var cid = $("#category_select").val();
+            $("#skill_select").empty();
+            $.post(
+                "${pageContext.request.contextPath}/articleAction_getCategory.action",
+                {"parentId":cid.toString()},
+                function (data) {
+                    $(data).each(function (i, obj) {
+                        $("#skill_select").append("<option value="+ obj.cid +">" + obj.cname + "</option>");
+                    })
+                },
+                "json");
+        });
+
+        // Display updated graph in jsp
+        $("#fileupload").change(function() {
+            var $file = $(this);
+            var objUrl = $file[0].files[0];
+            var windowURL = window.URL || window.webkitURL;
+            var dataURL;
+            dataURL = windowURL.createObjectURL(objUrl);
+            $("#imageview").attr("src",dataURL);
+            console.log($('#imageview').attr('style'));
+            if($('#imageview').attr('style') === 'display: none;'){
+                $('#imageview').attr('style','inline');
+                $('#imageview').width("300px");
+                $('#imageview').height("200px");
+                $('.update_pic').attr('style', 'margin-bottom: 80px;');
+            }
+        });
+
     });
 </script>
 
