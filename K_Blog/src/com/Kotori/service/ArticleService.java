@@ -19,4 +19,6 @@ public interface ArticleService {
     String addArticle(Article article);
 
     List<Article> getArticle(DetachedCriteria detachedCriteria);
+
+    String updateArticle(Article article);
 }

@@ -23,7 +23,7 @@
         </strong><small></small></div>
     </div>
     <hr>
-    <form id="blog_form" action="${pageContext.request.contextPath}/articleAction_addArticle.action" method="post" enctype="multipart/form-data">
+    <form id="blog_form" action="${pageContext.request.contextPath}/articleAction_updateArticle.action" method="post" enctype="multipart/form-data">
         <div class="edit_content">
             <div class="item1">
                 <div>
@@ -74,7 +74,7 @@
             ue.execCommand("inserthtml", $("#resContent").val());
         });
 
-        // Obtain root categories and load them into select box
+        // Step 1: Obtain root categories
         $.post(
             "${pageContext.request.contextPath}/articleAction_getCategory.action",
             {"parentId":0},
@@ -83,12 +83,24 @@
                     // console.log(obj.cname);
                     $("#category_select").append("<option value="+ obj.cid +">" + obj.cname + "</option>");
                 });
-                // Trigger change event to load sub classes
-                $("#category_select").trigger("change");
             },
             "json");
 
-        // Register change event for select box
+        // Step 2: Obtain sub categories and set current category
+        var parentid = <s:property value="category.parentid"></s:property>;
+        $.post(
+            "${pageContext.request.contextPath}/articleAction_getCategory.action",
+            {"parentId":parentid},
+            function (data) {
+                $(data).each(function (i, obj) {
+                    $("#skill_select").append("<option value="+ obj.cid +">" + obj.cname + "</option>");
+                })
+                $("#category_select option[value=<s:property value="category.parentid"></s:property>]").prop("selected", true);
+                $("#skill_select option[value=<s:property value="category.cid"></s:property>]").prop("selected", true);
+            },
+            "json");
+
+        // Register and listen to change event for select box
         $("#category_select").change(function () {
             var cid = $("#category_select").val();
             $("#skill_select").empty();

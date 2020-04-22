@@ -61,4 +61,10 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getArticle(DetachedCriteria detachedCriteria) {
         return this.articleDao.getArticle(detachedCriteria);
     }
+
+    @Override
+    public String updateArticle(Article article) {
+        this.articleDao.updateArticle(article);
+        return null;
+    }
 }

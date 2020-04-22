@@ -120,6 +120,16 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
         return "ARTICLE_OBTAIN_SUCCESS";
     }
 
+    public String updateArticle() throws IOException {
+        String pictureName = this.handleUploadedFile();
+        this.article.setArticle_pic(pictureName);
+        Long date = new Date().getTime();
+        this.article.setArticle_date(date.toString());
+
+        this.articleService.updateArticle(this.article);
+        return null;
+    }
+
     private String handleUploadedFile() throws IOException {
         if (null != this.upload){
             // Step 1 : Randomly generate file names

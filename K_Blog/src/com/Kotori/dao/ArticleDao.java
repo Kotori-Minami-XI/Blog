@@ -21,4 +21,6 @@ public interface ArticleDao {
     String addArticle(Article article);
 
     List<Article> getArticle(DetachedCriteria detachedCriteria);
+
+    String updateArticle(Article article);
 }
