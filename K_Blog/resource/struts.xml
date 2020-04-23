@@ -4,13 +4,26 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-
     <!-- IOC: Handover controller to spring -->
     <package name="struts" extends="struts-default">
+
+        <!-- Self-defined interceptor to intercept internal methods -->
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.Kotori.web.LoginInterceptor"></interceptor>
+        </interceptors>
+
+        <global-results>
+            <result>/mgr_login.jsp</result>
+        </global-results>
+
         <action name="loginAction_*" class="loginAction" method="{1}">
             <result name="LOGIN_FAIL">/mgr_login.jsp</result>
             <result name="LOGIN_SUCCESS">/WEB-INF/mgr/mgr_index.jsp</result>
             <result name="LOGOUT_SUCCESS" type="redirect">/mgr_login.jsp</result>
+            <interceptor-ref name="loginInterceptor">
+                <param name="excludeMethods">login</param>              <!-- excludes methods from the interceptor -->
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
                 login, logout
             </allowed-methods>
@@ -21,6 +34,8 @@
             <result name="CATEGORY_ALL_OBTAIN_SUCCESS">/WEB-INF/mgr/mgr_category.jsp</result>
             <result name="CATEGORY_UPDATE_SUCCESS" type="redirect">categoryAction_listCategory.action</result>
             <result name="CATEGORY_DELETE_SUCCESS" type="redirect">categoryAction_listCategory.action</result>
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
                 addCategory, listCategory, updateUI, updateCategory, deleteCategory
             </allowed-methods>
@@ -33,6 +48,8 @@
             <result name="ARTICLE_ADD_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <result name="ARTICLE_OBTAIN_SUCCESS">/WEB-INF/mgr/mgr_edit_article.jsp</result>
             <result name="ARTICLE_UPDATE_SUCCESS" type="redirect">articleAction_pageList.action</result>
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
                 listArticle, pageList, deleteArticle, getCategory, addArticle, editArticle, updateArticle
             </allowed-methods>
@@ -43,6 +60,8 @@
             <result name="LOCATE_LEFT_PAGE">WEB-INF/mgr/mgr_left.jsp</result>
             <result name="LOCATE_ACCOUNT_PAGE">WEB-INF/mgr/mgr_account.jsp</result>
             <result name="LOCATE_ADD_ARTICLE_PAGE">WEB-INF/mgr/mgr_add_article.jsp</result>
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
                 locateTopPage, locateLeftPage, locateAccountPage, locateAddArticlePage
             </allowed-methods>

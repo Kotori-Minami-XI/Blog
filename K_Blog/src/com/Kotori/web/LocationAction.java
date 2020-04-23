@@ -2,7 +2,7 @@ package com.Kotori.web;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class locationAction extends ActionSupport {
+public class LocationAction extends ActionSupport {
     public String locateLeftPage() {
         return "LOCATE_LEFT_PAGE";
     }

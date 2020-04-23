@@ -41,6 +41,4 @@ public class LoginAction extends ActionSupport implements ModelDriven<User> {
         }
         return "LOGOUT_SUCCESS";
     }
-
-
 }

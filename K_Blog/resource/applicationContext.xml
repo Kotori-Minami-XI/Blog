@@ -53,6 +53,6 @@
     </bean>
 
     <!-- Spring config: Location Action -->
-    <bean id="locationAction" class="com.Kotori.web.locationAction" scope="prototype"></bean>
+    <bean id="locationAction" class="com.Kotori.web.LocationAction" scope="prototype"></bean>
 
 </beans>
