@@ -46,7 +46,8 @@
 
 </div>
 
-    <div id="modal_view"></div>
+<%-- Grey background for windows --%>
+<div id="modal_view"></div>
 
 <div id="modal_content_account">
     <div id="close"><img src="${pageContext.request.contextPath}/images/delete_icon.png" alt=""></div>
@@ -80,6 +81,17 @@
 
 <script>
     $(function () {
+        // Async Ajax request to obtain a specific result
+        $.post(
+            "${pageContext.request.contextPath}/userAction_getAllUser.action",
+            {"username" : "jimmy"},
+            function(data){
+                $(data).each(function (i,obj) {
+                    alert(obj.username);
+                });
+            },
+            "json");
+
         $('#add').click(function () {
             $("#modal_view").fadeIn();
             $("#modal_content_account").fadeIn();

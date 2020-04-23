@@ -52,6 +52,17 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <!-- Spring config: User Action -->
+    <bean id="userAction" class="com.Kotori.web.UserAction" scope="prototype">
+        <property name="userService" ref="serviceUser"></property>
+    </bean>
+    <bean id="serviceUser" class="com.Kotori.service.impl.UserServiceImpl">
+        <property name="userDao" ref="daoUser"></property>
+    </bean>
+    <bean id="daoUser" class="com.Kotori.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
     <!-- Spring config: Location Action -->
     <bean id="locationAction" class="com.Kotori.web.LocationAction" scope="prototype"></bean>
 

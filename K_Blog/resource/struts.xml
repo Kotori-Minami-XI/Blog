@@ -69,6 +69,14 @@
             </allowed-methods>
         </action>
 
+        <action name="userAction_*" class="userAction" method="{1}">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
+            <allowed-methods>
+                getAllUser
+            </allowed-methods>
+        </action>
+
     </package>
 
 </struts>
