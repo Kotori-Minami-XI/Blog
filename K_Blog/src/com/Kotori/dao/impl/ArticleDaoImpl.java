@@ -64,8 +64,6 @@ public class ArticleDaoImpl extends HibernateDaoSupport implements ArticleDao {
 
     @Override
     public String updateArticle(Article article) {
-        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Category.class);
-        detachedCriteria.add(Restrictions.eq("article_id", article.getArticle_id()));
         this.getHibernateTemplate().update(article);
         return null;
     }

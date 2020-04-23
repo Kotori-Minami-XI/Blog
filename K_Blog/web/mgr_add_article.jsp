@@ -44,10 +44,10 @@
                 </div>
             </div>
 
-            <div class="item1 update_pic" style="width: 200px; height: 200px; margin-bottom: 10px">
+            <div class="item1 update_pic" style="width: 200px; height: 200px;">
                 <span>摘要图片：</span>
-                <img src="" id="imageview" class="item1_img" style="display: none;" >
                 <label for="fileupload" id="label_file">上传文件</label>
+                <img src="" id="imageview" class="item1_img" style="display: none;" >
                 <input type="file" name="upload" id="fileupload"/>
             </div>
 

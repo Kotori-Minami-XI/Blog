@@ -102,7 +102,7 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
     }
 
     public String addArticle() throws IOException {
-        String pictureName = this.handleUploadedFile();
+        String pictureName = this.generateUploadedFile();
         this.article.setArticle_pic(pictureName);
         Long date = new Date().getTime();
         this.article.setArticle_date(date.toString());
@@ -121,7 +121,7 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
     }
 
     public String updateArticle() throws IOException {
-        String pictureName = this.handleUploadedFile();
+        String pictureName = this.generateUploadedFile();
         this.article.setArticle_pic(pictureName);
         Long date = new Date().getTime();
         this.article.setArticle_date(date.toString());
@@ -130,22 +130,30 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
         return "ARTICLE_UPDATE_SUCCESS";
     }
 
-    private String handleUploadedFile() throws IOException {
+    private String generateUploadedFile() throws IOException {
         if (null != this.upload){
-            // Step 1 : Randomly generate file names
+            String uploadDirPath = ServletActionContext.getServletContext().getRealPath("/uploadDir");
+
+            // Step 1: Delete previous image if exists
+            String currentImage = this.article.getArticle_pic();
+            if (null != currentImage) {
+                File file =  new File(uploadDirPath + "/" + currentImage);
+                file.delete();
+            }
+
+            // Step 2: Randomly generate file names
             String suffix = this.uploadFileName.substring(this.uploadFileName.lastIndexOf("."));
             String uuid = UUID.randomUUID().toString().replace("-","");
             String fileName = uuid + suffix;
 
-            // Step 2 : Locate and generate upload file
-            String uploadDirPath = ServletActionContext.getServletContext().getRealPath("/uploadDir");
+            // Step 3: Locate and generate upload file
             File file = new File(uploadDirPath);
             if (!file.exists()){
                 file.mkdirs();
             }
             File finalFile = new File(uploadDirPath + "/" + fileName);
 
-            // Step 3 : Upload Files (Copy from old file to new file)
+            // Step 4: Upload Files (Copy from old file to new file)
             FileUtil.copyFile(this.upload, finalFile);
 
             return fileName;

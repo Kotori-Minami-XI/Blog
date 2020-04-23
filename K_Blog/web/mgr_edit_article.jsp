@@ -47,16 +47,19 @@
                 </div>
             </div>
 
-            <div class="item1 update_pic" style="width: 200px; height: 200px; margin-bottom: 10px">
+            <div class="item1 update_pic" style="width: 200px; height: 200px;">
                 <span>摘要图片：</span>
-                <img src="${pageContext.request.contextPath}/uploadDir/<s:property value="article_pic"></s:property>"
-                     id="imageview" class="item1_img" style="" >
                 <label for="fileupload" id="label_file">上传文件</label>
+                <img src="${pageContext.request.contextPath}/uploadDir/<s:property value="article_pic"></s:property>"
+                     id="imageview" class="item1_img" style="" alt="">
                 <input type="file" name="upload" id="fileupload"/>
             </div>
 
             <%-- Hidden text to store obtained article id--%>
             <input type="hidden" name="article_id" value="<s:property value="article_id"></s:property>"/>
+
+            <%-- Hidden text to store obtained article pic--%>
+            <input type="hidden" name="article_pic" value="<s:property value="article_pic"></s:property>"/>
 
             <%-- Hidden text to store obtained article content--%>
             <input type="hidden" id="resContent" value="<s:property value="article_content"></s:property>"/>
