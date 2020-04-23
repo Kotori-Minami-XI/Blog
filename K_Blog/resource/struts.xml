@@ -4,6 +4,9 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
+    <!-- Debug constant -->
+    <constant name="struts.devMode" value="true" />
+
     <!-- IOC: Handover controller to spring -->
     <package name="struts" extends="struts-default">
 
@@ -42,8 +45,8 @@
         </action>
 
         <action name="articleAction_*" class="articleAction" method="{1}">
-            <result name="ARTICLE_ALL_OBTAIN_SUCCESS">WEB-INF/mgr/mgr_main.jsp</result>
-            <result name="ARTICLE_SUBPAGE_OBTAIN_SUCCESS">WEB-INF/mgr/mgr_main.jsp</result>
+            <result name="ARTICLE_ALL_OBTAIN_SUCCESS">/WEB-INF/mgr/mgr_main.jsp</result>
+            <result name="ARTICLE_SUBPAGE_OBTAIN_SUCCESS">/WEB-INF/mgr/mgr_main.jsp</result>
             <result name="ARTICLE_DELETE_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <result name="ARTICLE_ADD_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <result name="ARTICLE_OBTAIN_SUCCESS">/WEB-INF/mgr/mgr_edit_article.jsp</result>
@@ -58,10 +61,10 @@
         </action>
 
         <action name="locationAction_*" class="locationAction" method="{1}">
-            <result name="LOCATE_TOP_PAGE">WEB-INF/mgr/mgr_top.jsp</result>
-            <result name="LOCATE_LEFT_PAGE">WEB-INF/mgr/mgr_left.jsp</result>
-            <result name="LOCATE_ACCOUNT_PAGE">WEB-INF/mgr/mgr_account.jsp</result>
-            <result name="LOCATE_ADD_ARTICLE_PAGE">WEB-INF/mgr/mgr_add_article.jsp</result>
+            <result name="LOCATE_TOP_PAGE">/WEB-INF/mgr/mgr_top.jsp</result>
+            <result name="LOCATE_LEFT_PAGE">/WEB-INF/mgr/mgr_left.jsp</result>
+            <result name="LOCATE_ACCOUNT_PAGE" type="redirect">userAction_getAllUser.action</result>
+            <result name="LOCATE_ADD_ARTICLE_PAGE">/WEB-INF/mgr/mgr_add_article.jsp</result>
             <interceptor-ref name="loginInterceptor"></interceptor-ref>
             <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
@@ -70,10 +73,12 @@
         </action>
 
         <action name="userAction_*" class="userAction" method="{1}">
+            <result name="USER_OBTAIN_ALL_SUCCESS">/WEB-INF/mgr/mgr_account.jsp</result>
+            <result name="USER_DELETE_SUCCESS" type="redirect">userAction_getAllUser.action</result>
             <interceptor-ref name="loginInterceptor"></interceptor-ref>
             <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
-                getAllUser
+                getAllUser, deleteUser
             </allowed-methods>
         </action>
 

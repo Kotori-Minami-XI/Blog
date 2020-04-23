@@ -32,4 +32,10 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         System.out.println(list);
         return list.size() > 0 ? list : null;
     }
+
+    @Override
+    public String deleteUser(User user) {
+        this.getHibernateTemplate().delete(user);
+        return null;
+    }
 }

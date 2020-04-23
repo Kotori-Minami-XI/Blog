@@ -3,6 +3,7 @@ package com.Kotori.web;
 import com.Kotori.domain.User;
 import com.Kotori.service.UserService;
 import com.Kotori.service.impl.ArticleServiceImpl;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import net.sf.json.JSONArray;
@@ -31,11 +32,12 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
     public String getAllUser() throws IOException {
         List<User> list = this.userService.getAllUser();
+        ActionContext.getContext().getValueStack().set("userList", list);
+        return "USER_OBTAIN_ALL_SUCCESS";
+    }
 
-        // Convert to json so that the front page retrieves items from json
-        JSONArray jsonArray = JSONArray.fromObject(list, new JsonConfig());
-        ServletActionContext.getResponse().setContentType("text/html:charset=UTF-8");
-        ServletActionContext.getResponse().getWriter().println(jsonArray.toString());
-        return null;
+    public String deleteUser() {
+        this.userService.deleteUser(this.user);
+        return "USER_DELETE_SUCCESS";
     }
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,12 +38,18 @@
         <li>移除管理员</li>
     </ul>
 
-    <ul class="list_goods_ul">
-        <li>01</li>
-        <li>Myxq</li>
-        <li><a href="#"><img class="img_icon" src="${pageContext.request.contextPath}/images/edit_icon.png" alt=""></a></li>
-        <li><a href="#"><img class="img_icon" src="${pageContext.request.contextPath}/images/delete_icon.png" alt=""></a></li>
-    </ul>
+    <s:iterator value="userList" var="user">
+        <ul class="list_goods_ul">
+            <li><s:property value="#user.id"></s:property></li>
+            <li><s:property value="#user.username"></s:property></li>
+            <li><a href="#">
+                <img class="img_icon" src="${pageContext.request.contextPath}/images/edit_icon.png" alt=""></a>
+            </li>
+            <li><a href="${pageContext.request.contextPath}/userAction_deleteUser.action?id=<s:property value="#user.id"></s:property>">
+                <img class="img_icon" src="${pageContext.request.contextPath}/images/delete_icon.png" alt=""></a>
+            </li>
+        </ul>
+    </s:iterator>
 
 </div>
 
@@ -81,16 +88,6 @@
 
 <script>
     $(function () {
-        // Async Ajax request to obtain a specific result
-        $.post(
-            "${pageContext.request.contextPath}/userAction_getAllUser.action",
-            {"username" : "jimmy"},
-            function(data){
-                $(data).each(function (i,obj) {
-                    alert(obj.username);
-                });
-            },
-            "json");
 
         $('#add').click(function () {
             $("#modal_view").fadeIn();
@@ -105,3 +102,6 @@
 </script>
 </body>
 </html>
+
+<%-- Debug Switch --%>
+<%-- <s:debug></s:debug> --%>
