@@ -21,7 +21,7 @@
             <result name="LOGIN_SUCCESS">/WEB-INF/mgr/mgr_index.jsp</result>
             <result name="LOGOUT_SUCCESS" type="redirect">/mgr_login.jsp</result>
             <interceptor-ref name="loginInterceptor">
-                <param name="excludeMethods">login</param>              <!-- excludes methods from the interceptor -->
+                <param name="excludeMethods">login</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
@@ -48,7 +48,9 @@
             <result name="ARTICLE_ADD_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <result name="ARTICLE_OBTAIN_SUCCESS">/WEB-INF/mgr/mgr_edit_article.jsp</result>
             <result name="ARTICLE_UPDATE_SUCCESS" type="redirect">articleAction_pageList.action</result>
-            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <interceptor-ref name="loginInterceptor">
+                <param name="excludeMethods">getCategory</param>
+            </interceptor-ref>
             <interceptor-ref name="defaultStack"></interceptor-ref>     <!-- default interceptor -->
             <allowed-methods>
                 listArticle, pageList, deleteArticle, getCategory, addArticle, editArticle, updateArticle

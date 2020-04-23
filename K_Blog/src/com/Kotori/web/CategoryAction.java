@@ -2,7 +2,6 @@ package com.Kotori.web;
 
 import com.Kotori.domain.Category;
 import com.Kotori.service.CategoryService;
-import com.Kotori.service.impl.CategoryServiceImpl;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
