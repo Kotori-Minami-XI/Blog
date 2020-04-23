@@ -32,6 +32,7 @@
             <result name="ARTICLE_DELETE_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <result name="ARTICLE_ADD_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <result name="ARTICLE_OBTAIN_SUCCESS">/mgr_edit_article.jsp</result>
+            <result name="ARTICLE_UPDATE_SUCCESS" type="redirect">articleAction_pageList.action</result>
             <allowed-methods>
                 listArticle, pageList, deleteArticle, getCategory, addArticle, editArticle, updateArticle
             </allowed-methods>

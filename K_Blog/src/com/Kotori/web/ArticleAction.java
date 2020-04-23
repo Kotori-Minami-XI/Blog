@@ -127,7 +127,7 @@ public class ArticleAction extends ActionSupport implements ModelDriven<Article>
         this.article.setArticle_date(date.toString());
 
         this.articleService.updateArticle(this.article);
-        return null;
+        return "ARTICLE_UPDATE_SUCCESS";
     }
 
     private String handleUploadedFile() throws IOException {

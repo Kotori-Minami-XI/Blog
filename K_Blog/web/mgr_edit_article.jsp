@@ -55,7 +55,10 @@
                 <input type="file" name="upload" id="fileupload"/>
             </div>
 
-            <%-- Hidden text to store obtained article text--%>
+            <%-- Hidden text to store obtained article id--%>
+            <input type="hidden" name="article_id" value="<s:property value="article_id"></s:property>"/>
+
+            <%-- Hidden text to store obtained article content--%>
             <input type="hidden" id="resContent" value="<s:property value="article_content"></s:property>"/>
             <div id="editor" name="article_content" style="width:900px;height:400px;"></div>
             <button class="am-btn am-btn-default" type="button" id="send" style="margin-top: 10px;">
