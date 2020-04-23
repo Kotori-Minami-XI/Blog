@@ -52,4 +52,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <!-- Spring config: Location Action -->
+    <bean id="locationAction" class="com.Kotori.web.locationAction" scope="prototype"></bean>
+
 </beans>

@@ -74,8 +74,8 @@
     <div id="page" class="page_div"></div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/paging.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/paging.js"></script>
 <script>
     
     // Sub pages implementation
@@ -91,7 +91,7 @@
     });
 
     $("#add").click(function () {
-        $(window).attr('location','${pageContext.request.contextPath}/mgr_add_article.jsp');
+        $(window).attr('location',"${pageContext.request.contextPath}/locationAction_locateAddArticlePage.action");
     });
 
     $("#input_search_btn").click(function () {

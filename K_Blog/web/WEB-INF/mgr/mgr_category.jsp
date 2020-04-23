@@ -7,13 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="stylesheet" href="css/amazeui.min.css" />
-    <link rel="stylesheet" href="js/pageStyle.css">
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amazeui.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/js/pageStyle.css">
+    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 </head>
 <body>
-
 
 <div class="main_top">
     <div class="am-cf am-padding am-padding-bottom-0">
@@ -45,10 +44,10 @@
             <li><s:property value="#category.cid"></s:property></li>
             <li><s:property value="#category.cname"></s:property></li>
             <li><a href="#" class="editCategory_btn" data-cid="<s:property value="#category.cid"></s:property>">
-                <img class="img_icon" src="images/edit_icon.png" alt=""></a>
+                <img class="img_icon" src="${pageContext.request.contextPath}/images/edit_icon.png" alt=""></a>
             </li>
             <li><a href="#" class="deleteCategory_btn" data-cid="<s:property value="#category.cid"></s:property>">
-                <img class="img_icon" src="images/delete_icon.png" alt=""></a>
+                <img class="img_icon" src="${pageContext.request.contextPath}/images/delete_icon.png" alt=""></a>
             </li>
         </ul>
     </s:iterator>
@@ -59,7 +58,7 @@
 <div id="modal_view"></div>
 
 <div id="modal_content_addCategoryWindow">
-    <div id="addCategory_close"><img src="images/delete_icon.png" alt=""></div>
+    <div id="addCategory_close"><img src="${pageContext.request.contextPath}/images/delete_icon.png" alt=""></div>
     <div class="edit_content">
 
         <div class="item1">
@@ -82,7 +81,7 @@
 </div>
 
 <div id="modal_content_editCategoryWindow">
-    <div id="editCategory_close"><img src="images/delete_icon.png" alt=""></div>
+    <div id="editCategory_close"><img src="${pageContext.request.contextPath}/images/delete_icon.png" alt=""></div>
     <div class="edit_content">
 
         <div class="item1">
