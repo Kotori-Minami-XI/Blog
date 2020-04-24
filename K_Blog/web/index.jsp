@@ -24,19 +24,8 @@
 
         <article class="mainarea" style="display:block;">
             <div class="blog-tab">
+                <div class="tab-content" id="tab_content">
 
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="tab">
-                        <%--Classification--%>
-                        <div id="lk_blog_two" class="container">
-                            <div class="row">
-                                <button class="btn-tag">Mysql</button>
-                                <button class="btn-tag">面向对象</button>
-                                <button class="btn-tag">jdbc</button>
-                                <button class="btn-tag">web服务器</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </article>
@@ -92,7 +81,7 @@
 </footer>
 
 <%--Js template for html rendering--%>
-<script id="jsTemplate" type="text/html">
+<script id="js_article_Template" type="text/html">
     {{each list as value}}
     <li class="content_item">
         <div class="blog-list-left" style="float: left;">
@@ -109,39 +98,73 @@
     {{/each}}
 </script>
 
+<script id="js_subCategory_Template" type="text/html">
+    <div role="tabpanel" class="tab-pane fade in active" id="tab">
+        <%--Classification--%>
+        <div id="lk_blog_two" class="container">
+            <div class="row">
+                {{each list as value}}
+                <button class="btn-tag">{{value.cname}}</button>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</script>
+
 
 <script>
-    function reminder() {
-        alert("功能还未上线，敬请期待");
+    /* Load sub categories once parent category is selected*/
+    var parentid = getParams("parentid");
+    if (null != parentid) {
+        $.post(
+            "${pageContext.request.contextPath}/articleAction_getCategory.action",
+            {"parentId": parentid},
+            function (data) {
+                console.log(data);
+                var html = template('js_subCategory_Template', {list: data});
+                $("#tab_content").html(html);
+            },
+            "json");
+    } else {
+        getPageList(1);
     }
 
-    $(function () {
+    function reminder() {
+        alert("功能还未上线，敬请期待");
+    };
 
-        getPageList(1);
+    function getPageList(currentPage) {
+        $.post(
+            "${pageContext.request.contextPath}/webAction_getPageList.action",
+            {"currentPage": currentPage},
+            function (data) {
+                // Use template to render html
+                var html = template('js_article_Template', {list: data.list});
+                $("#content").html(html);
 
-        function getPageList(currentPage) {
-            $.post(
-                "${pageContext.request.contextPath}/webAction_getPageList.action",
-                {"currentPage": currentPage},
-                function (data) {
-                    // Use template to render html
-                    var html = template('jsTemplate', {list: data.list});
-                    $("#content").html(html);
+                // Set paging
+                $("#page").paging({
+                    pageNo: data.currentPage,
+                    totalPage: data.totalPage,
+                    totalSize: data.totalCount,
+                    callBack: function (num) {
+                        getPageList(num);
+                    }
+                });
+            },
+            "json");
+    };
 
-                    // Set paging
-                    $("#page").paging({
-                        pageNo: data.currentPage,
-                        totalPage: data.totalPage,
-                        totalSize: data.totalCount,
-                        callBack: function (num) {
-                            getPageList(num);
-                        }
-                    })
-                },
-                "json");
+    // Get parameters from Url through regular expression
+    function getParams(param) {
+        var reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
         }
+        return null;
+    };
 
-    });
 </script>
 
 

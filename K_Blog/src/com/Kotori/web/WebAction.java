@@ -18,6 +18,10 @@ public class WebAction extends ActionSupport {
     private ArticleService articleService;
     private Integer currentPage = 1;
 
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
     public void setArticleService(ArticleService articleService) {
         this.articleService = articleService;
     }

@@ -91,7 +91,7 @@
             function (data) {
                 $(data).each(function (i, obj) {
                     //alert(obj.cname);
-                    $("#nav").append("<li class='active'><a href='index.jsp'>" + obj.cname +" </a></li>");
+                    $("#nav").append("<li class='active'><a href='index.jsp?parentid=" + obj.cid + "'>" + obj.cname +" </a></li>");
                 });
             },
             "json");
