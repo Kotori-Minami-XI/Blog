@@ -59,31 +59,7 @@
                                                 2020-08-31
                                             </div>
                                         </div>
-                                        <img src="images/blog_img.png" alt="" class="img-rounded">
-                                    </li>
-                                    <li class="content_item">
-                                        <div class="blog-list-left" style="float: left;">
-                                            <div class="main-title">
-                                                <a href="detail.jsp">标题标题标题标题标题标题</a>
-                                            </div>
-                                            <p class="sub-title">描述描述描述描述描述描述描述描述</p>
-                                            <div class="meta">
-                                                2020-08-31
-                                            </div>
-                                        </div>
-                                        <img src="images/blog_img.png" alt="" class="img-rounded">
-                                    </li>
-                                    <li class="content_item">
-                                        <div class="blog-list-left" style="float: left;">
-                                            <div class="main-title">
-                                                <a href="detail.jsp">标题标题标题标题标题标题</a>
-                                            </div>
-                                            <p class="sub-title">描述描述描述描述描述描述描述描述</p>
-                                            <div class="meta">
-                                                2020-08-31
-                                            </div>
-                                        </div>
-                                        <img src="images/blog_img.png" alt="" class="img-rounded">
+                                        <img src="${pageContext.request.contextPath}/images/blog_img.png" alt="" class="img-rounded">
                                     </li>
                                 </ul>
                                 <div id="page" class="page_div"></div>
@@ -103,16 +79,41 @@
         </div>
         <div class="footer-bottom col-sm-offset-2 hidden-sm hidden-xs">
             <ul>
-                <li><a href="">学科报名</a></li>
-                <li><a href="">师资团队</a></li>
-                <li><a href="">线上公开课</a></li>
-                <li><a href="">联络我们</a></li>
-                <li><a href="">支持我们</a></li>
-                <li><a href="">沪ICP备 18012345号-1</a></li>
+                <li><a href="" onclick="reminder()">学科报名</a></li>
+                <li><a href="" onclick="reminder()">师资团队</a></li>
+                <li><a href="" onclick="reminder()">线上公开课</a></li>
+                <li><a href="" onclick="reminder()">联络我们</a></li>
+                <li><a href="" onclick="reminder()">支持我们</a></li>
+                <li><a href="" onclick="reminder()">沪ICP备 18012345号-1</a></li>
             </ul>
         </div>
     </div>
 </footer>
 
+<script>
+    function reminder() {
+        alert("功能还未上线，敬请期待");
+    }
+
+
+$(function () {
+
+        // Obtain all articles
+        $.post(
+            "${pageContext.request.contextPath}/webAction_getPageList.action",
+            null,
+            function (data) {
+                $(data).each(function (i, obj) {
+
+
+                });
+            },
+            "json");
+
+    });
+</script>
+
+
 </body>
 </html>
+

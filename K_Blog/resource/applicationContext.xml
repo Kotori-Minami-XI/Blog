@@ -66,4 +66,9 @@
     <!-- Spring config: Location Action -->
     <bean id="locationAction" class="com.Kotori.web.LocationAction" scope="prototype"></bean>
 
+    <!-- Spring config: Web Action -->
+    <bean id="webAction" class="com.Kotori.web.WebAction" scope="prototype">
+        <property name="articleService" ref="serviceArticle"></property>
+    </bean>
+
 </beans>

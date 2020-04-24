@@ -26,14 +26,14 @@
             <ul class="top-bar-left">
                 <li style="margin-right: 20px;">
                     <a href="#" target="_blank">
-                        <span class="icon-tel"></span>
+                        <span></span>
                         喜欢IT,就来Kotori吧!
                     </a>
                 </li>
                 <li>
                     <a href="http://www.Kotori.com" target="_blank">
-                        <span class="icon-email"></span>
-                        www.Kotori.cm
+                        <span></span>
+                        www.Kotori.com
                     </a>
                 </li>
             </ul>
@@ -58,7 +58,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <a class="navbar-brand" href="index.html" style="margin-left: 180px">
-                <img src="images/lk_logo_sm.png" alt="Logo" width="220">
+                <img src="${pageContext.request.contextPath}/images/lk_logo_sm.png" alt="Logo" width="220">
             </a>
 
             <ul class="nav navbar-nav" id="nav" style="font-size: 20px">
@@ -72,7 +72,7 @@
 </nav>
 <!--banner-->
 <section id="lk_blog_one">
-    <img src="${pageContext.request.contextPath}/images/about_java.png" alt="" class="one-img" width="280">
+    <img src="#" alt="" class="one-img" width="280">
     <div class="one-right">
         <h1>Kotori学院技术专栏</h1>
         <span>喜欢IT,就来Kotori吧!</span>
