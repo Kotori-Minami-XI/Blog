@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 
 <%@include file="header.jsp"%>
+<script src="${pageContext.request.contextPath}/js/template.js"></script>
 <style>
     .content_item {
         height: 160px;
@@ -90,25 +91,55 @@
     </div>
 </footer>
 
+<%--Js template for html rendering--%>
+<script id="jsTemplate" type="text/html">
+    {{each list as value}}
+    <li class="content_item">
+        <div class="blog-list-left" style="float: left;">
+            <div class="main-title">
+                <a href="detail.jsp">{{value.article_title}}</a>
+            </div>
+            <p class="sub-title">{{value.article_desc}}</p>
+            <div class="meta">
+                2020-08-31
+            </div>
+        </div>
+        <img src="${pageContext.request.contextPath}/uploadDir/{{value.article_pic}}" alt="" class="img-rounded">
+    </li>
+    {{/each}}
+</script>
+
+
 <script>
     function reminder() {
         alert("功能还未上线，敬请期待");
     }
 
+    $(function () {
 
-$(function () {
+        getPageList(1);
 
-        // Obtain all articles
-        $.post(
-            "${pageContext.request.contextPath}/webAction_getPageList.action",
-            null,
-            function (data) {
-                $(data).each(function (i, obj) {
+        function getPageList(currentPage) {
+            $.post(
+                "${pageContext.request.contextPath}/webAction_getPageList.action",
+                {"currentPage": currentPage},
+                function (data) {
+                    // Use template to render html
+                    var html = template('jsTemplate', {list: data.list});
+                    $("#content").html(html);
 
-
-                });
-            },
-            "json");
+                    // Set paging
+                    $("#page").paging({
+                        pageNo: data.currentPage,
+                        totalPage: data.totalPage,
+                        totalSize: data.totalCount,
+                        callBack: function (num) {
+                            getPageList(num);
+                        }
+                    })
+                },
+                "json");
+        }
 
     });
 </script>
